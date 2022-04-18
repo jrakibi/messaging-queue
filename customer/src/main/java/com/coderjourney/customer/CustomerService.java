@@ -10,9 +10,9 @@ public class CustomerService {
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
-                .firstName(request.firstName)
-                .lastName(request.lastName)
-                .email(request.email)
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
                 .build();
 
         customerRepository.save(customer);
