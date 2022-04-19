@@ -1,12 +1,20 @@
 package com.coderjourney.fraud;
 
 public class FraudCheckResponse {
-    private Boolean isFraudster;
+    private boolean isFraudster;
 
     public FraudCheckResponse() {
     }
 
     public FraudCheckResponse(Boolean isFraudster) {
         this.isFraudster = isFraudster;
+    }
+
+    public boolean isFraudster() {
+        return isFraudster;
+    }
+
+    public void setFraudster(boolean fraudster) {
+        isFraudster = fraudster;
     }
 }
