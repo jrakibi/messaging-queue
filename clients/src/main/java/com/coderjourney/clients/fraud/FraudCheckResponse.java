@@ -1,4 +1,4 @@
-package com.coderjourney.fraud;
+package com.coderjourney.clients.fraud;
 
 public class FraudCheckResponse {
     private boolean isFraudster;
