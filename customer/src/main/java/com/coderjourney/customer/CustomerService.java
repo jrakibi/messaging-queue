@@ -2,6 +2,8 @@ package com.coderjourney.customer;
 
 import com.coderjourney.clients.fraud.FraudCheckResponse;
 import com.coderjourney.clients.fraud.FraudClient;
+import com.coderjourney.clients.fraud.NotificationClient;
+import com.coderjourney.clients.fraud.NotificationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +14,8 @@ public class CustomerService {
     CustomerRepository customerRepository;
     @Autowired
     FraudClient fraudClient;
+    @Autowired
+    NotificationClient notificationClient;
     @Autowired
     RestTemplate restTemplate;
 
@@ -34,6 +38,13 @@ public class CustomerService {
         if(fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Fraudster");
         }
+
+
+        notificationClient.sendNotification(new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, Welcome to coder.journey community ..", customer.getFirstName())
+        ));
 
 
     }
