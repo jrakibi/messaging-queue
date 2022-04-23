@@ -2,8 +2,8 @@ package com.coderjourney.customer;
 
 import com.coderjourney.clients.fraud.FraudCheckResponse;
 import com.coderjourney.clients.fraud.FraudClient;
-import com.coderjourney.clients.fraud.NotificationClient;
-import com.coderjourney.clients.fraud.NotificationRequest;
+import com.coderjourney.clients.notification.NotificationClient;
+import com.coderjourney.clients.notification.NotificationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
