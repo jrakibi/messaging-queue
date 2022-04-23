@@ -1,6 +1,6 @@
 package com.coderjourney.notification;
 
-import com.coderjourney.clients.fraud.NotificationRequest;
+import com.coderjourney.clients.notification.NotificationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

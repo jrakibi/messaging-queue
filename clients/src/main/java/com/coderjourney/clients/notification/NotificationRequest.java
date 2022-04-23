@@ -1,4 +1,4 @@
-package com.coderjourney.clients.fraud;
+package com.coderjourney.clients.notification;
 
 import lombok.*;
 
