@@ -1,5 +1,6 @@
 package com.coderjourney.customer;
 
+import com.coderjourney.amqp.RabbitMQMessageProducer;
 import com.coderjourney.clients.fraud.FraudCheckResponse;
 import com.coderjourney.clients.fraud.FraudClient;
 import com.coderjourney.clients.notification.NotificationClient;
@@ -18,6 +19,8 @@ public class CustomerService {
     NotificationClient notificationClient;
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -40,11 +43,27 @@ public class CustomerService {
         }
 
 
-        notificationClient.sendNotification(new NotificationRequest(
-                customer.getId(),
-                customer.getEmail(),
-                String.format("Hi %s, Welcome to coder.journey community ..", customer.getFirstName())
-        ));
+        NotificationRequest notificationRequest =
+                new NotificationRequest(
+                    customer.getId(),
+                    customer.getEmail(),
+                    String.format("Hi %s, Welcome to coder.journey community ..", customer.getFirstName())
+                );
+
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key"
+
+        );
+
+//        notificationClient.sendNotification(
+//                new NotificationRequest(
+//                    customer.getId(),
+//                    customer.getEmail(),
+//                    String.format("Hi %s, Welcome to coder.journey community ..", customer.getFirstName()
+//                    )
+//        ));
 
 
     }
