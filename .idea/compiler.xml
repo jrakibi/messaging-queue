@@ -12,10 +12,12 @@
         <module name="apigw" />
         <module name="customer" />
         <module name="fraud" />
+        <module name="amqp" />
         <module name="notification" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="amqp" target="1.7" />
       <module name="apigw" target="1.7" />
       <module name="clients" target="1.7" />
       <module name="customer" target="1.7" />
